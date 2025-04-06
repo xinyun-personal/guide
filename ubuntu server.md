@@ -27,6 +27,7 @@ sudo ufw enable;
 > Default `Nginx HTTPS`
 
 ## Phpmyadmin
+
 ```bash
 
 sudo apt update;
@@ -70,14 +71,54 @@ sudo pm2 completion install;
 > Setting
 >> VALIDATE PASSWORD COMPONENT `Y`
 
->> VALIDATE PASSWORD POLICY `2`
+> > VALIDATE PASSWORD POLICY `2`
 
->> DISALLOW Root Remote Login `Y`
+> > DISALLOW Root Remote Login `Y`
 
->> RELOAD Privilege `Y`
+> > RELOAD Privilege `Y`
 
 ```bash
 
 sudo apt install mysql-server -y;
 sudo mysql_secure_installation;
+```
+
+## Default Vuejs static file nginx config
+
+> Vuejs or Static File
+
+```text
+server {
+    listen 80;
+    charset utf-8;
+    client_max_body_size 50M;
+    server_name your-server-ip-or-domain;
+
+    root /var/www/html/vue-app;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+    
+    error_log  /var/log/nginx/vue-app-error.log;
+    access_log /var/log/nginx/vue-app-access.log;
+}
+```
+
+## Default Reverse Proxy
+
+```text
+server {
+    client_max_body_size 50M;
+    server_name  your-server-ip-or-domain;
+
+    location / {
+            proxy_pass http://127.0.0.1:2001;
+            include /etc/nginx/proxy_params;
+            proxy_buffers 8 1024k;
+            proxy_buffer_size 1024k;
+    }
+}
+
 ```
