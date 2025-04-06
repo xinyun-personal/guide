@@ -73,6 +73,7 @@ module.exports = {
 ### 1.4 Compile Backend
 
 ```bash
+
 npx webpack --config webpack.config.js
 ```
 
@@ -83,6 +84,7 @@ npx webpack --config webpack.config.js
 ### 2.1 Create Frontend App
 
 ```bash
+
 cd ..
 npm create vite@latest frontend -- --template vue
 cd frontend
@@ -91,7 +93,7 @@ npm install
 
 ### 2.2 Example API Call from Vue
 
-```ts
+```js
 // frontend/src/api.ts
 export async function getHello() {
   const res = await fetch('http://localhost:3000/api/hello');
@@ -102,6 +104,7 @@ export async function getHello() {
 ### 2.3 Use in Component
 
 ```vue
+
 <script setup>
 import { onMounted, ref } from 'vue';
 import { getHello } from './api';
@@ -126,6 +129,7 @@ onMounted(async () => {
 ### 3.1 Initialize Capacitor
 
 ```bash
+
 npm install --global @capacitor/cli
 cd frontend
 npx cap init my-app com.example.app
@@ -141,6 +145,17 @@ npx cap add ios
 4. Access it from Vue via `http://localhost:3000`.
 
 > **Note:** You'll need to bridge the native layer to run Node.js backend code.
+```bash
+#install library in
+npm install nodejs-mobile-react-native
+``` 
+
+```java
+
+include ':nodejs-mobile-react-native'
+project(':nodejs-mobile-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/nodejs-mobile-react-native/android')
+```
+
 
 ### 3.2.1 Prepare Node.js Backend for Mobile
 

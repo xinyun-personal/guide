@@ -71,11 +71,16 @@ sudo pm2 completion install;
 > Setting
 >> VALIDATE PASSWORD COMPONENT `Y`
 
-> > VALIDATE PASSWORD POLICY `2`
+>> VALIDATE PASSWORD POLICY `2`
 
-> > DISALLOW Root Remote Login `Y`
+>> DISALLOW Root Remote Login `Y`
 
-> > RELOAD Privilege `Y`
+>> RELOAD Privilege `Y`
+
+> Allow mysql connect remote
+>>sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf</br>
+>>bind-address            = 0.0.0.0 </br>
+>>sudo systemctl restart mysql
 
 ```bash
 
